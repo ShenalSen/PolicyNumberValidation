@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/admin/v1" name="SyncControllerAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" uri-template="/sync-trigger">
+        <inSequence>
+            <log category="INFO">
+                <message>SyncControllerAPI: Received sync trigger request</message>
+            </log>
+            <!-- Run full sync: lock, truncate, insert, store unlock trigger -->
+            <sequence key="SyncPoliciesSeq"/>
+            <payloadFactory media-type="json">
+                <format>{"status": "accepted", "message": "Policy sync initiated. Data will be available in approximately 5 minutes."}</format>
+            </payloadFactory>
+            <property name="HTTP_SC" value="202" scope="axis2"/>
+            <respond/>
+        </inSequence>
+        <faultSequence>
+            <log category="ERROR">
+                <message>SyncControllerAPI error: ${props.synapse.ERROR_MESSAGE}</message>
+            </log>
+            <payloadFactory media-type="json">
+                <format>{"error": "Sync trigger failed", "details": "${props.synapse.ERROR_MESSAGE}"}</format>
+            </payloadFactory>
+            <property name="HTTP_SC" value="500" scope="axis2"/>
+            <respond/>
+        </faultSequence>
+    </resource>
+</api>
