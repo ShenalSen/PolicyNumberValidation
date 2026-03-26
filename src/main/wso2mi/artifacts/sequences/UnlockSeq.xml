@@ -2,7 +2,7 @@
 <sequence name="UnlockSeq" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
     <!-- Set data_ready = 1 to unlock the gatekeeper -->
     <log category="INFO">
-        <message>UnlockSeq: Setting data_ready = 1 after 5-minute delay</message>
+        <message>UnlockSeq: Setting data_ready = 1 after (1.00) minute delay</message>
     </log>
     <dbreport>
         <connection>
