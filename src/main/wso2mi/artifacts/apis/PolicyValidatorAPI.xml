@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/api/v1" name="PolicyValidatorAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" uri-template="/policy-validate">
+        <inSequence>
+            <!-- Validate required field -->
+            <filter xpath="${not(exists(payload.policy_id))}">
+                <then>
+                    <payloadFactory media-type="json">
+                        <format>{"error": "policy_id is required"}</format>
+                    </payloadFactory>
+                    <property name="HTTP_SC" value="400" scope="axis2"/>
+                    <respond/>
+                </then>
+                <!-- <else>
+                </else> -->
+            </filter>
+            <!-- Check gatekeeper: data_ready flag -->
+            <sequence key="CheckBatchReadySeq"/>
+            <filter xpath="${vars.dataReady != 'true'}">
+                <then>
+                    <payloadFactory media-type="json">
+                        <format>{"error": "Service temporarily unavailable. Policy data is being refreshed. Please try again later."}</format>
+                    </payloadFactory>
+                    <property name="HTTP_SC" value="503" scope="axis2"/>
+                    <respond/>
+                </then>
+                <!-- <else>
+                </else> -->
+            </filter>
+            <!-- Proceed to validate policy -->
+            <sequence key="ValidatePolicySeq"/>
+        </inSequence>
+        <faultSequence>
+            <log category="ERROR">
+                <message>PolicyValidatorAPI error: ${props.synapse.ERROR_MESSAGE}</message>
+            </log>
+            <payloadFactory media-type="json">
+                <format>{"error": "Internal server error", "details": "${props.synapse.ERROR_MESSAGE}"}</format>
+            </payloadFactory>
+            <property name="HTTP_SC" value="500" scope="axis2"/>
+            <respond/>
+        </faultSequence>
+    </resource>
+</api>
