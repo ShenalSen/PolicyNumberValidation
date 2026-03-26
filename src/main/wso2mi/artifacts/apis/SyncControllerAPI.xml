@@ -8,7 +8,7 @@
             <!-- Run full sync: lock, truncate, insert, store unlock trigger -->
             <sequence key="SyncPoliciesSeq"/>
             <payloadFactory media-type="json">
-                <format>{"status": "accepted", "message": "Policy sync initiated. Data will be available in approximately 5 minutes."}</format>
+                <format>{"status": "accepted", "message": "Policy sync initiated. Data will be available in approximately 1 minute."}</format>
             </payloadFactory>
             <property name="HTTP_SC" value="202" scope="axis2"/>
             <respond/>
