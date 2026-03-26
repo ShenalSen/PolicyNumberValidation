@@ -1,0 +1,10 @@
+---
+key: "PolicyValidatorAPI-1.0.0"
+name : "PolicyValidatorAPI"
+displayName : "PolicyValidatorAPI"
+description: "PolicyValidatorAPI"
+version: "1.0.0"
+serviceUrl: "https://{MI_HOST}:{MI_PORT}/policyvalide"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false

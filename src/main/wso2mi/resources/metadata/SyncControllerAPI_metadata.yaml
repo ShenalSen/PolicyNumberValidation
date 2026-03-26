@@ -1,0 +1,10 @@
+---
+key: "SyncControllerAPI-1.0.0"
+name : "SyncControllerAPI"
+displayName : "SyncControllerAPI"
+description: "SyncControllerAPI"
+version: "1.0.0"
+serviceUrl: "https://{MI_HOST}:{MI_PORT}/synccontroll"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false
