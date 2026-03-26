@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="CheckBatchReadySeq" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <!-- Query batch_control to check if data_ready = 1 -->
+    <dblookup>
+        <connection>
+            <pool>
+                <driver>com.mysql.cj.jdbc.Driver</driver>
+                <url>jdbc:mysql://localhost:3306/insurance</url>
+                <user>root</user>
+                <password>12345</password>
+                <property name="validationquery" value=""/>
+            </pool>
+        </connection>
+        <statement>
+            <sql><![CDATA[SELECT data_ready FROM batch_control WHERE job_id = 'J_001']]></sql>
+            <result column="data_ready" name="data_ready"/>
+        </statement>
+    </dblookup>
+    <variable name="dataReady" expression="${properties.synapse.data_ready}" type="STRING"/>
+    <log category="INFO">
+        <message>CheckBatchReadySeq: data_ready=${vars.dataReady}</message>
+    </log>
+</sequence>
