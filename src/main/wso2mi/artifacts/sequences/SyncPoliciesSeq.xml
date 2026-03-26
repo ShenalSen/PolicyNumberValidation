@@ -64,6 +64,6 @@
     </payloadFactory>
     <store messageStore="UnlockTriggerStore"/>
     <log category="INFO">
-        <message>SyncPoliciesSeq: Sync complete. Unlock scheduled in 5 minutes.</message>
+        <message>SyncPoliciesSeq: Sync complete. Unlock scheduled in 1.00 minute.</message>
     </log>
 </sequence>
