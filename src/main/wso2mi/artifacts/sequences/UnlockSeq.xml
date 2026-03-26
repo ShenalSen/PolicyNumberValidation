@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="UnlockSeq" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <!-- Set data_ready = 1 to unlock the gatekeeper -->
+    <log category="INFO">
+        <message>UnlockSeq: Setting data_ready = 1 after 5-minute delay</message>
+    </log>
+    <dbreport>
+        <connection>
+            <pool>
+                <driver>com.mysql.cj.jdbc.Driver</driver>
+                <url>jdbc:mysql://localhost:3306/insurance</url>
+                <user>root</user>
+                <password>12345</password>
+                <property name="validationquery" value=""/>
+            </pool>
+        </connection>
+        <statement>
+            <sql><![CDATA[UPDATE batch_control SET data_ready = 1 WHERE job_id = 'J_001']]></sql>
+        </statement>
+    </dbreport>
+    <log category="INFO">
+        <message>UnlockSeq: data_ready unlocked successfully</message>
+    </log>
+    <drop/>
+</sequence>
