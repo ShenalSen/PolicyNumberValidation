@@ -15,7 +15,9 @@
             </pool>
         </connection>
         <statement>
-            <sql><![CDATA[UPDATE batch_control SET data_ready = 0 WHERE job_id = 'J_001']]></sql>
+            <sql><![CDATA[UPDATE batch_control SET data_ready = ? WHERE job_id = ?]]></sql>
+            <parameter value="0" type="INTEGER"/>
+            <parameter value="J_001" type="VARCHAR"/>
         </statement>
     </dbreport>
     <!-- Truncate valid_policies mirror table -->
@@ -51,7 +53,8 @@
             </pool>
         </connection>
         <statement>
-            <sql><![CDATA[INSERT INTO valid_policies (policy_id) SELECT policy_id FROM policies WHERE status = 'Active';]]></sql>
+            <sql><![CDATA[INSERT INTO valid_policies (policy_id) SELECT policy_id FROM policies WHERE status = ?]]></sql>
+            <parameter value="Active" type="VARCHAR"/>
         </statement>
     </dbreport>
     <!-- set data_ready = 1 -->
@@ -69,7 +72,9 @@
             </pool>
         </connection>
         <statement>
-            <sql><![CDATA[UPDATE batch_control SET data_ready = 1 WHERE job_id = 'J_001']]></sql>
+            <sql><![CDATA[UPDATE batch_control SET data_ready = ? WHERE job_id = ?]]></sql>
+            <parameter value="1" type="INTEGER"/>
+            <parameter value="J_001" type="VARCHAR"/>
         </statement>
     </dbreport>
     <log category="INFO">
