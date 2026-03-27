@@ -23,7 +23,7 @@
         </statement>
     </dblookup>
     <variable name="policyCount" expression="${properties.synapse.policy_count}" type="STRING"/>
-    <!-- Return valid:1 if found, valid:0 if not -->
+    <!-- Return valid 1 if found valid 0 if not -->
     <filter xpath="${integer(vars.policyCount) > 0}">
         <then>
             <payloadFactory media-type="json">
