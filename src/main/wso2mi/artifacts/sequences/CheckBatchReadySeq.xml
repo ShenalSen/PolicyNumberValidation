@@ -18,7 +18,7 @@
         </statement>
     </dblookup>
     <variable name="dataReady" expression="${properties.synapse.data_ready}" type="STRING"/>
-    <log category="INFO">
+    <log category="INFO" logMessageID="false" logFullPayload="false">
         <message>CheckBatchReadySeq: data_ready=${vars.dataReady}</message>
     </log>
 </sequence>

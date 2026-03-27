@@ -2,8 +2,8 @@
 <api context="/admin/v1" name="SyncControllerAPI" xmlns="http://ws.apache.org/ns/synapse">
     <resource methods="POST" uri-template="/sync-trigger">
         <inSequence>
-            <log category="INFO">
-                <message>SyncControllerAPI: Received sync trigger request</message>
+            <log category="INFO" logMessageID="false" logFullPayload="false">
+                <message>SyncControllerAPI: Received sync trigger request </message>
             </log>
             <!-- Run full sync: lock, truncate, insert, store unlock trigger -->
             <sequence key="SyncPoliciesSeq"/>
@@ -14,8 +14,8 @@
             <respond/>
         </inSequence>
         <faultSequence>
-            <log category="ERROR">
-                <message>SyncControllerAPI error: ${props.synapse.ERROR_MESSAGE}</message>
+            <log category="ERROR" logMessageID="false" logFullPayload="false">
+                <message>SyncControllerAPI error : ${props.synapse.ERROR_MESSAGE}</message>
             </log>
             <payloadFactory media-type="json">
                 <format>{"error": "Sync trigger failed", "details": "${props.synapse.ERROR_MESSAGE}"}</format>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sequence name="SyncPoliciesSeq" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
     <!-- Set data_ready = 0 -->
-    <log category="INFO">
+    <log category="INFO" logMessageID="false" logFullPayload="false">
         <message>SyncPoliciesSeq: Locking gatekeeper (data_ready = 0)</message>
     </log>
     <dbreport>
@@ -21,7 +21,7 @@
         </statement>
     </dbreport>
     <!-- Truncate valid_policies mirror table -->
-    <log category="INFO">
+    <log category="INFO" logMessageID="false" logFullPayload="false">
         <message>SyncPoliciesSeq: Truncating valid_policies table</message>
     </log>
     <dbreport>
@@ -39,7 +39,7 @@
         </statement>
     </dbreport>
     <!-- Insert active policies from policies table into valid_policies -->
-    <log category="INFO">
+    <log category="INFO" logMessageID="false" logFullPayload="false">
         <message>SyncPoliciesSeq: Inserting active policies into valid_policies</message>
     </log>
     <dbreport>
@@ -58,8 +58,8 @@
         </statement>
     </dbreport>
     <!-- set data_ready = 1 -->
-    <log category="INFO">
-        <message>Unlocking gatekeeper (data_ready = 1)</message>
+    <log category="INFO" logMessageID="false" logFullPayload="false">
+        <message>making data_ready = 1</message>
     </log>
     <dbreport>
         <connection>
@@ -77,7 +77,7 @@
             <parameter value="J_001" type="VARCHAR"/>
         </statement>
     </dbreport>
-    <log category="INFO">
+    <log category="INFO" logMessageID="false" logFullPayload="false">
         <message>Sync complete.</message>
     </log>
 </sequence>

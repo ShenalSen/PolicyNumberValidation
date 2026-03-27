@@ -2,7 +2,7 @@
 <sequence name="ValidatePolicySeq" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
     <!-- Extract policy_id from the request payload -->
     <variable name="policyId" expression="${payload.policy_id}" type="STRING"/>
-    <log category="INFO">
+    <log category="INFO" logMessageID="false" logFullPayload="false">
         <message>ValidatePolicySeq: Validating policy_id=${vars.policyId}</message>
     </log>
     <!-- Look up valid_policies mirror table -->

@@ -30,8 +30,8 @@
             </filter>
         </inSequence>
         <faultSequence>
-            <log category="ERROR">
-                <message>PolicyValidatorAPI error: ${props.synapse.ERROR_MESSAGE}</message>
+            <log category="ERROR" logMessageID="false" logFullPayload="false">
+                <message>PolicyValidatorAPI error : ${props.synapse.ERROR_MESSAGE}</message>
             </log>
             <payloadFactory media-type="json">
                 <format>{"error": "Internal server error", "details": "${props.synapse.ERROR_MESSAGE}"}</format>
