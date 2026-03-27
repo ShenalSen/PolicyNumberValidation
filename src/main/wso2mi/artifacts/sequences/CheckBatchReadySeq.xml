@@ -12,7 +12,8 @@
             </pool>
         </connection>
         <statement>
-            <sql><![CDATA[SELECT data_ready FROM batch_control WHERE job_id = 'J_001']]></sql>
+            <sql><![CDATA[SELECT data_ready FROM batch_control WHERE job_id = ?]]></sql>
+            <parameter value="J_001" type="VARCHAR"/>
             <result column="data_ready" name="data_ready"/>
         </statement>
     </dblookup>
