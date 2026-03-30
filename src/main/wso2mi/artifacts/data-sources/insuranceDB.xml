@@ -1,0 +1,14 @@
+<datasource>
+    <name>insuranceDB</name>
+    <jndiConfig useDataSourceFactory="false">
+        <name>insuranceDB</name>
+    </jndiConfig>
+    <definition type="RDBMS">
+        <configuration>
+            <driverClassName>com.mysql.jdbc.Driver</driverClassName>
+            <url>jdbc:mysql://localhost:3306/insurance</url>
+            <username>root</username>
+            <password>12345</password>
+        </configuration>
+    </definition>
+</datasource>
