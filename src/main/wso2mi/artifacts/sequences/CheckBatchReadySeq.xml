@@ -4,10 +4,7 @@
     <dblookup>
         <connection>
             <pool>
-                <driver>com.mysql.cj.jdbc.Driver</driver>
-                <url>jdbc:mysql://localhost:3306/insurance</url>
-                <user>root</user>
-                <password>12345</password>
+                <dsName>insuranceDB</dsName>
                 <property name="validationquery" value=""/>
             </pool>
         </connection>
